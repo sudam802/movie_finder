@@ -1,37 +1,30 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom"; // 👈 import Link
 
-function SearchBar({onResults}) {
+function SearchBar({ onResults }) {
   const [title, setTitle] = useState("");
-
-  // .env at project root:
-  // VITE_API_URL=https://www.omdbapi.com
-  // VITE_MOVIE_API_KEY=be157541
-  const API_URL = 'https://omdbapi.com/?apikey=be157541&s=';
+  const API_URL = "https://omdbapi.com/?apikey=be157541&s=";
 
   useEffect(() => {
     if (!title.trim()) {
-      onResults([]); // clear results if input empty
+      onResults([]);
       return;
     }
-    if (!title.trim()) return; // don't call API on empty value
 
     const controller = new AbortController();
-
-    // Choose ONE: search many by title (s=) OR exact title (t=)
     const url = `${API_URL}${title}`;
-    console.log("Fetching OMDb URL:", url); // <-- your log
+    console.log("Fetching OMDb URL:", url);
 
     (async () => {
       try {
         const res = await fetch(url, { signal: controller.signal });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        console.log("OMDb result:", data); 
-        
-         if (data.Response === "True" && data.Search) {
-          onResults(data.Search); // 👈 send results to Home
+
+        if (data.Response === "True" && data.Search) {
+          onResults(data.Search);
         } else {
-          onResults([]); // no results
+          onResults([]);
         }
       } catch (err) {
         if (err.name !== "AbortError") {
@@ -41,16 +34,19 @@ function SearchBar({onResults}) {
     })();
 
     return () => controller.abort();
-  });
+  }, [title]);
 
   return (
     <div className="topnav">
       <div className="brand">🎬 CineScope</div>
 
       <nav className="nav-links">
-        <a className="nav-link active" href="#home">Home</a>
-        <a className="nav-link" href="#about">About</a>
-        <a className="nav-link" href="#contact">Contact</a>
+        <Link className="nav-link" to="/">Home</Link>
+        <Link className="nav-link" to="/about">About</Link>
+        <Link className="nav-link" to="/contact">Contact</Link>
+        <Link to="/login">
+          <button className="login-btn">Login</button>
+        </Link>
       </nav>
 
       <div className="search-wrap">
