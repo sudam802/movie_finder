@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { registerUser } from "../api/auth";
 import Select from "react-select";
 import countryList from "react-select-country-list";
+import "../styles/pages/register.css";
 
 export default function Register() {
   const [username, setUsername] = useState("");

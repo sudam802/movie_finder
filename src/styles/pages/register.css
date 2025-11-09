@@ -1,0 +1,88 @@
+/* ====== Register Page Styles ====== */
+.register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+  font-family: "Inter", sans-serif;
+}
+
+.register-form {
+  background: #ffffff;
+  padding: 40px 45px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 420px;
+  gap: 15px;
+}
+
+.register-page h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #111827;
+  font-weight: 600;
+}
+
+.register-form input {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 1rem;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.register-form input:focus {
+  border-color: #4f46e5;
+  outline: none;
+}
+
+.register-form select,
+.register-form .css-b62m3t-container { /* react-select container */
+  font-size: 1rem;
+}
+
+.register-form button {
+  background-color: #4f46e5;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-form button:hover {
+  background-color: #3730a3;
+}
+
+.register-form button:active {
+  transform: scale(0.98);
+}
+
+/* Success & error messages */
+.register-page p {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.register-page p[style*="color: red"] {
+  color: #dc2626 !important;
+}
+
+.register-page p[style*="color: green"] {
+  color: #16a34a !important;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .register-form {
+    padding: 30px;
+    width: 90%;
+  }
+}
